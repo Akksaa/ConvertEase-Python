@@ -56,7 +56,7 @@ if uploaded_files:
         df = df[selected_columns]
         
         st.subheader("📈 Data Visualization")
-        chart_type = st.selectbox("Choose a chart type", ["Bar Chart", "Line Chart", "Histogram"], key=file.name)
+        chart_type = st.selectbox("Choose a chart type", ["Bar Chart", "Line Chart"], key=file.name)
         num_cols = df.select_dtypes(include='number').columns
         if not num_cols.empty:
             selected_col = st.selectbox("Select a numeric column", num_cols, key=file.name + "_chart")
@@ -64,8 +64,6 @@ if uploaded_files:
                 st.bar_chart(df[selected_col])
             elif chart_type == "Line Chart":
                 st.line_chart(df[selected_col])
-            elif chart_type == "Histogram":
-                st.write(df[selected_col].hist(bins=20))
         else:
             st.warning("No numeric columns available for visualization.")
 
